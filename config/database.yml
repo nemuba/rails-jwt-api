@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+development:
+  <<: *default
+  database: rails_jwt_development
+  username: <%= Rails.application.credentials[:development][:pg][:user] %>
+  password: <%= Rails.application.credentials[:development][:pg][:password] %>
+  host: <%= Rails.application.credentials[:development][:pg][:host] %>
+  port: <%= Rails.application.credentials[:development][:pg][:port] %>
+test:
+  <<: *default
+  database: rails_jwt_test
+production:
+  <<: *default
+  url: <%= Rails.application.credentials[:production][:pg][:url] %>
