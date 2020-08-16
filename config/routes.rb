@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  root to: "apipie/apipies#index"
+  
 
   namespace :api do
     namespace :v1 do
+
+      root to: "api#welcome"
+
       resources :users
 
       resources :posts do

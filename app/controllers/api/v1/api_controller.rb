@@ -1,6 +1,11 @@
 module Api
   module V1
     class ApiController < ApplicationController
+
+      def welcome
+        render json: {message: "welcome"}
+      end
+
       def not_found
         render json: { error: 'page not found' }
       end
@@ -20,7 +25,7 @@ module Api
       end  
 
       def current_user
-        @user ||= User.find(session[:current_user])
+        @user ||= User.find(session[:current_user]) if session[:current_user]
         @user
       end
     end
