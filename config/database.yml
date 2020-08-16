@@ -16,4 +16,4 @@ test:
   database: rails_jwt_test
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= Rails.application.credentials[:production][:pg][:url] %>
